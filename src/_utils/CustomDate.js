@@ -1,13 +1,13 @@
-export default class CustomDate {
+export default class CustomDate extends Date {
   constructor(dateString) {
-    this.dateObject = new Date(dateString);
+    super(dateString);
 
-    this.minutes = this.dateObject.getMinutes();
-    this.hour = this.dateObject.getHours();
-    this.date = this.dateObject.getDate();
+    this.minutes = this.getMinutes();
+    this.hour = this.getHours();
+    this.date = this.getDate();
     //Date.getMonth() returned 0-11
-    this.month = this.dateObject.getMonth() + 1;
-    this.years = this.dateObject.getFullYear();
+    this.month = this.getMonth() + 1;
+    this.years = this.getFullYear();
   }
 
   //utility function for handle single digit number and transform it by add 0 in front
@@ -32,8 +32,8 @@ export default class CustomDate {
   //-------------Thai Format -----------------
   get thaiFormat() {
     //Date.getMonth() returned 0-11
-    const thaiMonth = this.getThaiMonth(this.dateObject.getMonth());
-    const thaiYear = this.getThaiYear(this.dateObject.getFullYear());
+    const thaiMonth = this.getThaiMonth(this.getMonth());
+    const thaiYear = this.getThaiYear(this.getFullYear());
 
     return `${this.date} ${thaiMonth} ${thaiYear}`;
   }
@@ -75,7 +75,7 @@ export default class CustomDate {
       return 31;
     } else {
       //Febuary Case
-      return (this.date.getFullYear() + 1) % 4 === 0 ? 29 : 28;
+      return this.years % 4 === 0 && this.years % 100 !== 0 ? 29 : 28;
     }
   }
   //-------------------------------------------
@@ -85,8 +85,4 @@ export default class CustomDate {
     return Math.ceil(this.month / 3);
   }
 
-  //-------------Get Unix Timestamp -----------------
-  get timestamp() {
-    return this.dateObject.valueOf();
-  }
 }
