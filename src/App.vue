@@ -1,18 +1,30 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <router-link v-for="route in routes" :key="route.description" :to="route.path">
+      {{route.description}}
+    </router-link>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    
+  },
+  data() {
+    return {
+      routes:[{description:"Home",path:"/"},
+      {description:"Pokemons",path:"/pokemons"},
+      {description:"Test1",path:"/test1"},
+      {description:"Test2",path:"/test2"},
+      {description:"Test3",path:"/test3"},
+      ]
+    }
+  },
 }
 </script>
 
