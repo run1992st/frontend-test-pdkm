@@ -84,5 +84,4 @@ export default class CustomDate extends Date {
   get quarter() {
     return Math.ceil(this.month / 3);
   }
-
 }

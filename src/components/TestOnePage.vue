@@ -12,13 +12,13 @@ export default {
   methods: {
     manipulate() {
 
-      let ineditableProducts = warehouseData.filter((data) => {
+      const ineditableProducts = warehouseData.filter((data) => {
         return !data.is_editable_price;
       });
 
-      let productWeight = ineditableProducts.map(({name,products}) => {
+      const productWeight = ineditableProducts.map(({name,products}) => {
 
-        let totalSubWeight = products.reduce((total, subProduct) => {
+        const totalSubWeight = products.reduce((total, subProduct) => {
           return total + subProduct.weight;
         }, 0);
 
