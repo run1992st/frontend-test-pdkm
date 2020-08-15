@@ -38,7 +38,7 @@ export default {
     setTimeout(async () => {
       const pokemonsPromises = [];
       this.loading = true;
-      for (let i = 1; i < 120; i++) {
+      for (let i = 1; i <= 104; i++) {
         pokemonsPromises.push(fetch(`https://pokeapi.co/api/v2/pokemon/${i}`));
       }
 

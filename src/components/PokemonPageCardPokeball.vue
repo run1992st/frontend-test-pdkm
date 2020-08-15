@@ -254,7 +254,7 @@ export default {
       if(newValue === true){
         setTimeout(() => {
           this.isShow=false
-        }, 120);
+        }, 200);
       } 
     },
   },

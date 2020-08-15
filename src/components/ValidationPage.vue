@@ -2,7 +2,7 @@
   <div class="relative">
     <section id="form-container">
       <transition name="fade" mode="out-in" appear>
-        <section  key="signup" id="signup" class="flex justify-center w-full">
+        <section key="signup" id="signup" class="flex justify-center w-full">
           <form @submit.prevent="checkFormAndSignup" class="flex justify-center w-full px-2 py-2">
             <div
               id="form-container"
@@ -10,72 +10,65 @@
             >
               <h1
                 class="mt-4 mb-1 text-2xl text-gray-800 tracking-wider font-bold"
-              >Welcome New Member</h1>
+              >Test Form and Validation</h1>
               <h1
                 class="mb-4 text-md text-gray-600 tracking-wider font-medium"
               >Please fill in the required field</h1>
-              <h1
-                class="mt-6 ml-3 font-semibold tracking-wider text-gray-700 text-left w-full"
-              >Username</h1>
-              <input
-                class="px-6 h-10 mt-1 w-full bg-gray-100 font-semibold text-gray-700 text-lg tracking-widest rounded-full shadow-tinted border border-gray-100 focus:shadow-outline"
-                v-model="username"
-                placeholder="Your Username"
-              />
-              <h1
-                class="mt-5 ml-3 font-semibold tracking-wider text-gray-700 text-left w-full"
-              >Password</h1>
-              <input
-                type="password"
-                class="px-6 h-10 mt-1 w-full bg-gray-100 font-semibold text-gray-700 text-lg tracking-widest rounded-full shadow-tinted border border-gray-100 focus:shadow-outline"
-                v-model="password"
-                placeholder="6 Characters or Longer"
-              />
+              <div class="mt-2 w-full h-24">
+                <h1 class="label">First Name</h1>
+                <input class="text-input" v-model="firstname" placeholder="Johny" />
+                <h6 class="err">{{err.firstname}}</h6>
+              </div>
+              <div class="mt-2 w-full h-24">
+                <h1 class="label">Last Name</h1>
+                <input class="text-input" v-model="lastname" placeholder="Walking to the bar" />
+                <h6 class="err">{{err.lastname}}</h6>
+              </div>
+              <div class="mt-2 w-full h-24">
+                <h1 class="label">E-mail</h1>
+                <input type="email" class="text-input" v-model="email" placeholder="Your E-mail" />
+                <h6 class="err">{{err.email}}</h6>
+              </div>
+              <div class="mt-2 w-full h-24">
+                <h1 class="label">Password</h1>
+                <input
+                  type="password"
+                  class="text-input"
+                  v-model="password"
+                  placeholder="6 Characters or Longer"
+                />
+                <h6 class="err">{{err.password}}</h6>
+              </div>
+              <div class="mt-2 w-full h-24">
+                <h1 class="label">Verify Password</h1>
+                <input
+                  type="password"
+                  class="text-input"
+                  v-model="repassword"
+                  placeholder="Re-Enter your password"
+                />
+                <h6 class="err">{{err.repassword}}</h6>
+              </div>
 
-              <h1
-                class="mt-5 ml-3 font-semibold tracking-wider text-gray-700 text-left w-full"
-              >Re-Password</h1>
-              <input
-                type="password"
-                class="px-6 h-10 mt-1 w-full bg-gray-100 font-semibold text-gray-700 text-lg tracking-widest rounded-full shadow-tinted border border-gray-100 focus:shadow-outline"
-                v-model="repassword"
-                placeholder="Re-Enter your password"
-              />
-
-              <h1
-                class="mt-8 ml-3 font-semibold tracking-wider text-gray-700 text-left w-full"
-              >First Name</h1>
-              <input
-                class="px-6 h-10 mt-1 w-full bg-gray-100 font-semibold text-gray-700 text-lg tracking-wide rounded-full shadow-tinted border border-gray-100 focus:shadow-outline"
-                v-model="firstname"
-                placeholder="Johny"
-              />
-
-              <h1
-                class="mt-5 ml-3 font-semibold tracking-wider text-gray-700 text-left w-full"
-              >Last Name</h1>
-              <input
-                class="px-6 h-10 mt-1 w-full bg-gray-100 font-semibold text-gray-700 text-lg tracking-widest rounded-full shadow-tinted border border-gray-100 focus:shadow-outline"
-                v-model="lastname"
-                placeholder="Walking to the bar"
-              />
+              <h1 class="label">Gender</h1>
+              <select class="text-input" name="gender" id="gender" v-model="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
               <hr class="mt-8 w-11/12 shadow-sm opacity-50" />
-              <button
-                type="submit"
-                class="w-full h-12 mt-8 mb-8 bg-gray-800 text-gray-100 text-lg font-semibold tracking-wider rounded-full"
-              >Sign Up</button>
-              <button class="mb-8 mt-4" @click.prevent="form='signin'">
-                <span class="tracking-wide">
-                  Already have an account?
-                  <span
-                    class="font-extrabold tracking-wide underline"
-                  >Click here.</span>
-                </span>
-              </button>
+              <button type="submit" class="btn">Submit</button>
             </div>
           </form>
         </section>
       </transition>
+      <div class="mt-8 py-8" v-if="showResult">
+        <h3 class="font-bold">Result</h3>
+        <h4>First Name : {{firstname}}</h4>
+        <h4>Last Name : {{lastname}}</h4>
+        <h4>Email : {{email}}</h4>
+        <h4>Gender : {{gender}}</h4>
+      </div>
     </section>
   </div>
 </template>
@@ -84,18 +77,68 @@
 export default {
   data() {
     return {
-      username: null,
-      password: null,
-      repassword: null,
       firstname: null,
       lastname: null,
-      form: "signin",
-      validity: null,
-      err: null,
+      email: null,
+      password: null,
+      repassword: null,
+      gender: "male",
+
+      showResult: false,
+
+      err: {
+        firstname: "",
+        lastname: "",
+        password: "",
+        repassword: "",
+        email: "",
+      },
     };
   },
   methods: {
+    checkFormAndSignup() {
+      let isInvalid = false;
+
+      this.showResult = false;
+
+      this.err.firstname = "";
+      this.err.lastname = "";
+      this.err.password = "";
+      this.err.repassword = "";
+      this.err.email = "";
+
+      if (
+        !this.checkForm(this.email, /^[A-Za-z0-9_]+@[A-Za-z]+[.][a-zA-Z]+$/)
+      ) {
+        this.err.email = "Invalid Email";
+        isInvalid = true;
+      }
+      if (!this.checkForm(this.password, /^[A-Za-z0-9]{6,20}$/)) {
+        this.err.password = "Invalid Password";
+        isInvalid = true;
+      }
+      if (!this.checkForm(this.repassword, /^[A-Za-z0-9]{6,20}$/)) {
+        this.err.repassword = "Invalid Repassword";
+        isInvalid = true;
+      }
+      if (!this.checkForm(this.firstname, /^[A-Za-z]+$/)) {
+        this.err.firstname = "Invalid Firstname";
+        isInvalid = true;
+      }
+      if (!this.checkForm(this.lastname, /^[A-Za-z]+$/)) {
+        this.err.lastname = "Invalid Lastname";
+        isInvalid = true;
+      }
+
+      if (isInvalid) {
+        return;
+      } else {
+        this.showResult = true;
+      }
+    },
     checkForm(inputString, regexp) {
+      if (inputString === "" || inputString === null) return false;
+
       console.log(
         "checkForm->",
         inputString,
@@ -112,28 +155,29 @@ export default {
 form {
   font-family: "Raleway";
 }
-.fade-enter-active {
+
+.text-input {
+  @apply px-6 h-10 mt-1 w-full bg-gray-100 font-semibold text-gray-700 text-lg tracking-wide rounded-full border border-gray-100;
+}
+.text-input:focus {
+  outline: none;
+  @apply shadow-outline;
+}
+.label {
+  @apply mt-5 ml-3 font-semibold tracking-wider text-gray-700 text-left w-full;
+}
+.btn {
+  @apply w-full h-12 mt-8 mb-8 bg-gray-800 text-gray-100 text-lg font-semibold tracking-wider rounded-full;
+}
+.err {
+  @apply w-full mt-1 ml-4 text-left text-xs tracking-wider text-red-600 self-start;
+}
+.fade-enter-active,
+fade-leave-active {
   transition: all 0.6s ease;
 }
-.fade-enter {
+.fade-enter,
+fade-leave-to {
   opacity: 0;
-}
-.fade-leave-active {
-  transition: all 0.6s ease;
-}
-.fade-leave-to {
-  opacity: 0;
-}
-
-.pop-enter-active,
-.pop-leave-active {
-  transition: transform 0.4s cubic-bezier(0.5, 0.82, 0.165, 1),
-    opacity 0.4s linear;
-}
-
-.pop-enter,
-.pop-leave-to {
-  opacity: 0;
-  transform: scale(0.5) translateY(-50%);
 }
 </style>

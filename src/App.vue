@@ -1,9 +1,19 @@
 <template>
   <div id="app">
-    <router-link class="mx-8 w-32 h-8 text-2xl" v-for="route in routes" :key="route.description" :to="route.path">
-      <button class="p-2 font-extrabold tracking-widest text-gray-900 hover:text-red-300">{{route.description}}</button>
-    </router-link>
-    <router-view class="mt-8"></router-view>
+    <div class="shadow py-8">
+      <router-link
+        class="mx-8 w-32 h-8 text-2xl"
+        v-for="route in routes"
+        :key="route.description"
+        :to="route.path"
+      >
+        <button
+          class="p-2 font-extrabold tracking-widest text-gray-900 hover:text-red-300"
+        >{{route.description}}</button>
+      </router-link>
+    </div>
+
+    <router-view class="py-8"></router-view>
   </div>
 </template>
 

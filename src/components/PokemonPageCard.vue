@@ -15,12 +15,12 @@
           alt
         />
 
-        <p class="mt-2 h-4 lg:h-6 w-full tracking-wider font-semibold text-gray-800">{{name}}</p>
+        <p class="mt-2 h-4 lg:h-6 w-full text-xs lg:text-base tracking-wider font-semibold text-gray-800">{{name}}</p>
       </div>
 
       <div v-if="!imageSrc || !name" class="relative">
-        <div class="gradient h-16 lg:h-32 xl:h-40 w-full"></div>
-        <p class="gradient mt-2 h-4 lg:h-6 w-full"></p>
+        <div class="gradient h-16 lg:h-32 xl:h-40 w-full rounded-md"></div>
+        <p class="gradient mt-2 h-4 lg:h-6 w-full rounded-md"></p>
       </div>
     </div>
   </div>
@@ -44,7 +44,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.isPoped = true;
-    }, 3500);
+    }, 2700);
   },
 };
 </script>
@@ -59,13 +59,14 @@ export default {
 
 #drop {
   animation-name: throw;
-  animation-duration: 4s;
-  animation-iteration-count: forward;
+  animation-duration: 3s;
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation-iteration-count: forwards;
 }
 #scale-in {
   transform:scale(0);
-  animation: scale 2.5s ease forwards;
-  animation-delay: 3.7s;
+  animation: scale 1.4s ease forwards;
+  animation-delay: 3.1s;
 }
 
 @keyframes gradient {
@@ -85,44 +86,44 @@ export default {
     transform: translateY(-200px) rotate(0deg);
   }
   33% {
-    transform: translateY(-20px) rotate(0deg);
+    transform: translateY(-32px) rotate(0deg);
   }
   36% {
-    transform: translateY(-30px) rotate(0deg);
+    transform: translateY(-34px) rotate(0deg);
   }
   40% {
-    transform: translateY(-20px) rotate(0deg);
-  }
-  43% {
     transform: translateY(-30px) rotate(0deg);
   }
+  43% {
+    transform: translateY(-35px) rotate(0deg);
+  }
   46% {
-    transform: translateY(-20px) rotate(0deg);
+    transform: translateY(-30px) rotate(0deg);
   }
   50% {
-    transform: translateY(-20px) rotate(0deg);
+    transform: translateY(-30px) rotate(0deg);
   }
   60% {
-    transform: translateY(-20px) rotate(-40deg);
+    transform: translateY(-30px) rotate(-40deg);
   }
   66% {
-    transform: translateY(-20px) rotate(40deg);
+    transform: translateY(-30px) rotate(40deg);
     opacity: 1;
   }
   72% {
-    transform: translateY(-20px) rotate(-40deg);
+    transform: translateY(-30px) rotate(-40deg);
     opacity: 0;
   }
   78% {
-    transform: translateY(-20px) rotate(40deg);
+    transform: translateY(-30px) rotate(40deg);
     opacity: 1;
   }
   84% {
-    transform: translateY(-20px) rotate(0deg);
+    transform: translateY(-30px) rotate(0deg);
     opacity: 0;
   }
   100% {
-    transform: translateY(-20px) rotate(0deg);
+    transform: translateY(-30px) rotate(0deg);
     opacity: 1;
   }
 }
