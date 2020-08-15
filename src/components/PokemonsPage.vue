@@ -1,7 +1,10 @@
 <template>
   <div>
-    Pokemons Fetching Page
-    <div></div>
+    <div class="px-24 grid grid-cols-6" >
+      <div class="" v-for="pokemon in pokemons" :key="pokemon.name">
+        <img class=" " :src="pokemon.imageSrc" alt />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -9,13 +12,14 @@
 export default {
   data() {
     return {
+      pokemons: [],
       loading: false,
     };
   },
   async mounted() {
     const pokemonsPromises = [];
     this.loading = true;
-    for (let i = 1; i < 10; i++) {
+    for (let i = 1; i < 104; i++) {
       pokemonsPromises.push(fetch(`https://pokeapi.co/api/v2/pokemon/${i}`));
     }
 
@@ -28,12 +32,10 @@ export default {
     let pokemons = await Promise.all(promises);
     this.loading = false;
 
-    console.log(
-      pokemons.map((pokemon) => ({
-        name: pokemon.name,
-        imageSrc: pokemon.sprites.front_default,
-      }))
-    );
+    this.pokemons = pokemons.map((pokemon) => ({
+      name: pokemon.name,
+      imageSrc: pokemon.sprites.front_default,
+    }));
   },
 };
 </script>
