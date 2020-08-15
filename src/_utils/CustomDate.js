@@ -1,4 +1,5 @@
 export default class CustomDate extends Date {
+  
   constructor(dateString) {
     super(dateString);
 

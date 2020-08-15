@@ -52,9 +52,9 @@ export default {
 <style scoped>
 .gradient {
   background: linear-gradient(90deg, #fafafa, #e4e4e4, #c7c5c5, #d6d6d6);
-  opacity: 0.2;
+  opacity: 0.35;
   background-size: 200% 200%;
-  animation: gradient 4s ease infinite;
+  animation: gradient 4s infinite;
 }
 
 #drop {

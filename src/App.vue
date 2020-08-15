@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <div class="shadow py-8">
+
+    <div class="shadow-md py-8">
       <router-link
         class="mx-8 w-32 h-8 text-2xl"
         v-for="route in routes"
@@ -13,7 +14,8 @@
       </router-link>
     </div>
 
-    <router-view class="py-8"></router-view>
+    <router-view class="py-8" />
+
   </div>
 </template>
 

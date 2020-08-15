@@ -1,5 +1,6 @@
 export { productsTotalWeight, productsSubTotalWeight };
 
+//First Case :: product.proucts[].weight is total weight of subproducts
 function productsTotalWeight(productsArray) {
   //opinionated that productsArray contain <is_editable_price> and <products Array>
   const ineditableProducts = productsArray.filter((data) => {
@@ -19,6 +20,8 @@ function productsTotalWeight(productsArray) {
   return subProductsTotalWeight;
 }
 
+
+//Second Case :: product.proucts[].weight is weight per unit of subproducts.(Have to multiply by amount first)
 function productsSubTotalWeight(productsArray) {
   const ineditableProducts = productsArray.filter((data) => {
     return !data.is_editable_price;
