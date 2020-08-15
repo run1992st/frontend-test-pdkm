@@ -2,6 +2,7 @@ import findSecondMax from "./array-function"
 
 
 test('find second largest number->',()=>{
+  expect(findSecondMax([])).toBe(null)
   expect(findSecondMax([1])).toBe(1)
   expect(findSecondMax([1,2,3])).toBe(2)
   expect(findSecondMax([1,1])).toBe(1)

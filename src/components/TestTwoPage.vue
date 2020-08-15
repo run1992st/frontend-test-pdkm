@@ -1,8 +1,8 @@
 <template>
-  <div class="bg-gray-200">
-    <div class="flex items-center justify-center" v-for="format of formats" :key="format.desc">
-      <h1>{{format.desc}}</h1>
-      <p>{{format.formatted}}</p>
+  <div class="flex flex-col items-center  py-16 text-md tracking-wide bg-gray-100">
+    <div class="mt-4 max-w-lg w-full flex justify-between" v-for="format of formats" :key="format.desc">
+      <h1 class="self-start">{{format.desc}}</h1>
+      <h1 class="w-64">{{format.formatted}}</h1>
     </div>
   </div>
 </template>

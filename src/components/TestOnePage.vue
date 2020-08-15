@@ -1,6 +1,7 @@
 <template>
-  <div class="bg-gray-200">
-    {{this.getProductsTotalWeight(productsArray)}}
+  <div class="py-16 text-lg bg-gray-100">
+    <h3>Result Object : </h3>
+    <p class="mt-4">{{this.getProductsTotalWeight(productsArray)}}</p>
   </div>
 </template>
 
