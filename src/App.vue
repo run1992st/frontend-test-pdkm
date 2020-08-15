@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-
-    <div class="shadow-md py-8">
+    <div class="shadow-md py-4">
+      <h1 class="text-6xl  font-black">FRONTEND TEST</h1>
       <router-link
         class="mx-8 w-32 h-8 text-2xl"
         v-for="route in routes"
@@ -13,9 +13,7 @@
         >{{route.description}}</button>
       </router-link>
     </div>
-
     <router-view class="py-8" />
-
   </div>
 </template>
 
