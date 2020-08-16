@@ -3,19 +3,21 @@
     <div class="w-full h-full">
       <div class="flex flex-col items-center justify-center" v-if="imageSrc && name">
         <div class="absolute w-full flex h-48 items-end justify-center overflow-hidden">
-          <span id="drop">
-            <PokemonPageCardPokeball :pop="isPoped" />
+          <!-- Sequence 1 Ball fall , Sequence 2 Ball poped -->
+          <span id="drop" v-if="isBallShow">
+            <PokemonPageCardPokeball v-if="!isPoped" />
+            <PokemonPageCardBallpop v-if="isPoped" />
           </span>
         </div>
-
+        <!-- Sequence 3 Pokemon Sprite enter enlarged -->
         <img
           id="scale-in"
           class="min-w-full h-16 lg:h-32 xl:h-40 w-full object-contain"
           :src="imageSrc"
-          alt
         />
-
-        <p class="mt-2 h-4 lg:h-6 w-full text-xs lg:text-base tracking-wider font-semibold text-gray-800">{{name}}</p>
+        <p v-show="!isBallShow"
+          class="mt-2 h-4 lg:h-6 w-full text-xs lg:text-base tracking-wider font-semibold text-gray-800"
+        >{{name}}</p>
       </div>
 
       <div v-if="!imageSrc || !name" class="relative">
@@ -28,23 +30,28 @@
 
 <script>
 import PokemonPageCardPokeball from "./PokemonPageCardPokeball";
+import PokemonPageCardBallpop from "./PokemonPageCardBallpop";
 export default {
   name: "PokemonPageCard",
-  components: { PokemonPageCardPokeball },
+  components: { PokemonPageCardPokeball, PokemonPageCardBallpop },
   props: {
     imageSrc: String,
-    skeleton: Boolean,
     name: String,
+    
   },
   data() {
     return {
+      isBallShow:true,
       isPoped: false,
     };
   },
   mounted() {
     setTimeout(() => {
       this.isPoped = true;
-    }, 2700);
+    }, 2600);
+    setTimeout(() => {
+      this.isBallShow=false
+    }, 2800);
   },
 };
 </script>
@@ -64,9 +71,9 @@ export default {
   animation-iteration-count: forwards;
 }
 #scale-in {
-  transform:scale(0);
+  transform: scale(0);
   animation: scale 1.4s ease forwards;
-  animation-delay: 3.1s;
+  animation-delay: 3s;
 }
 
 @keyframes gradient {

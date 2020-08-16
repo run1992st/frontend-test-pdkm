@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="loading" class="lg:px-40 xl:px-64 flex flex-wrap">
-      <PokemonPageCard v-for="n in 104" :key="n" :skeleton="true" />
+      <PokemonPageCard v-for="n in 104" :key="n"/>
     </div>
     <div v-if="!loading" class="lg:px-40 xl:px-64 flex flex-wrap" name="fade" tag="div">
       <PokemonPageCard
